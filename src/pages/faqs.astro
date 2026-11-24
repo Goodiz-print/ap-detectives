@@ -1,0 +1,47 @@
+---
+import Base from '../layouts/Base.astro';
+import faq from '../data/faq.json';
+import Banner from '../components/Banner.astro';
+import photo from '../assets/images/hero-objets.jpg';
+
+const stripTags = (html: string) =>
+  html
+    .replace(/<\/(p|li)>|<br>/g, ' ')
+    .replace(/<[^>]+>/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: stripTags(item.html) },
+  })),
+};
+---
+
+<Base
+  title="AP Détectives | FAQs"
+  description="Consultez notre FAQs pour en savoir plus sur le métier de détective privé et trouver les réponses aux questions fréquemment posées."
+  jsonLd={[faqLd]}
+>
+  <Banner image={photo} title="Questions fréquentes" />
+
+  <div class="container-site max-w-4xl py-16">
+    {
+      faq.map((item) => (
+        <details class="group border-b border-black/15">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-lg font-bold [&::-webkit-details-marker]:hidden">
+            <h2>{item.question}</h2>
+            <svg class="shrink-0 transition-transform group-open:rotate-180" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </summary>
+          <div class="prose-site pb-8" set:html={item.html} />
+        </details>
+      ))
+    }
+  </div>
+</Base>

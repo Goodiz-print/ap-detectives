@@ -1,0 +1,69 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+
+const { legal } = site;
+---
+
+<Base
+  title="AP Détectives | Mentions légales"
+  description="Mentions légales et politique de confidentialité du site AP Détectives & Consulting, agence de détectives privés à Bordeaux."
+  cta={false}
+>
+  <article class="container-site max-w-3xl py-16">
+    <h1 class="heading-display">Mentions légales</h1>
+
+    <div class="prose-site mt-10">
+      <h2 class="font-display text-3xl">Éditeur du site</h2>
+      <p>
+        {site.name}<br />
+        {site.address.street}, {site.address.postalCode} {site.address.city} ({site.address.note})<br />
+        Téléphone : <a href={site.phone.href} class="underline">{site.phone.display}</a><br />
+        Courriel : <a href={`mailto:${site.email}`} class="underline">{site.email}</a><br />
+        SIREN : {legal.siren} — Code NAF : {legal.naf}<br />
+        Directrice de la publication : {site.owner}
+      </p>
+
+      <h2 class="font-display text-3xl">Activité réglementée</h2>
+      <p>
+        Autorisation d’exercice : {legal.autorisationExercice}<br />
+        Agrément dirigeant : {legal.agrementDirigeant}<br />
+        Carte professionnelle : {legal.carteProfessionnelle}<br />
+        Délivrés par le Conseil National des Activités Privées de Sécurité (CNAPS).
+      </p>
+      <p>
+        Article L 622-14 du code de la sécurité intérieure : « L’autorisation d’exercice ne confère
+        aucun caractère officiel à l’entreprise ou aux personnes qui en bénéficient. Elle n’engage
+        en aucune manière la responsabilité des pouvoirs publics. »
+      </p>
+      <p>Responsabilité civile professionnelle : {legal.rcp}</p>
+
+      <h2 class="font-display text-3xl">Hébergement</h2>
+      <p>
+        Netlify, Inc. — 512 2nd Street, Suite 200, San Francisco, CA 94107, États-Unis —{' '}
+        <a href="https://www.netlify.com" rel="noopener" class="underline">www.netlify.com</a>
+      </p>
+
+      <h2 class="font-display text-3xl">Données personnelles</h2>
+      <p>
+        Les informations transmises via le formulaire de contact (nom, adresse email, numéro de
+        téléphone, message) sont destinées exclusivement à {site.name} afin de répondre à votre
+        demande. Elles ne sont ni cédées ni utilisées à des fins de prospection.
+      </p>
+      <p>
+        Conformément au Règlement général sur la protection des données (RGPD) et à la loi
+        Informatique et Libertés, vous disposez d’un droit d’accès, de rectification, d’effacement
+        et d’opposition, que vous pouvez exercer en écrivant à{' '}
+        <a href={`mailto:${site.email}`} class="underline">{site.email}</a>. Vous pouvez également
+        introduire une réclamation auprès de la CNIL (<a href="https://www.cnil.fr" rel="noopener" class="underline">www.cnil.fr</a>).
+      </p>
+      <p>Ce site n’utilise aucun cookie de suivi ni outil de mesure d’audience tiers.</p>
+
+      <h2 class="font-display text-3xl">Propriété intellectuelle</h2>
+      <p>
+        L’ensemble des contenus de ce site (textes, logo, photographies) est protégé. Toute
+        reproduction sans autorisation préalable est interdite.
+      </p>
+    </div>
+  </article>
+</Base>

@@ -1,0 +1,57 @@
+---
+/**
+ * Formulaire traité par Netlify Forms (détecté au build grâce à `data-netlify`).
+ * La notification vers contact@ap-detectives.com se règle dans l'interface Netlify :
+ * Forms → Form notifications → Email notification.
+ */
+const field =
+  'mt-2 block w-full border border-black/20 bg-white px-3 py-2.5 text-base text-ink focus:border-ink';
+---
+
+<form
+  name="contact"
+  method="POST"
+  action="/merci/"
+  data-netlify="true"
+  netlify-honeypot="site-web"
+  class="max-w-xl space-y-6"
+>
+  <input type="hidden" name="form-name" value="contact" />
+  <p class="hidden">
+    <label>Ne pas remplir ce champ : <input name="site-web" tabindex="-1" autocomplete="off" /></label>
+  </p>
+
+  <div>
+    <label for="nom">Nom</label>
+    <input id="nom" name="nom" type="text" required autocomplete="name" class={field} />
+  </div>
+  <div>
+    <label for="email">Adresse email</label>
+    <input id="email" name="email" type="email" required autocomplete="email" class={field} />
+  </div>
+  <div>
+    <label for="telephone">Numéro de téléphone</label>
+    <input id="telephone" name="telephone" type="tel" autocomplete="tel" class={field} />
+  </div>
+  <div>
+    <label for="profil">Vous êtes</label>
+    <select id="profil" name="profil" class={`${field} max-w-48`}>
+      <option value="">—</option>
+      <option>Particulier</option>
+      <option>Professionnel</option>
+    </select>
+  </div>
+  <div>
+    <label for="message">Votre message</label>
+    <textarea id="message" name="message" rows="9" required class={field}></textarea>
+  </div>
+
+  <p class="text-sm leading-6 text-muted">
+    Les informations saisies servent uniquement à répondre à votre demande. Elles sont couvertes
+    par le secret professionnel. Voir les <a href="/mentions-legales/" class="underline">mentions légales</a>.
+  </p>
+
+  <button type="submit" class="bg-gold px-6 py-3 font-medium text-ink transition hover:brightness-95">
+    Envoyer
+  </button>
+</form>

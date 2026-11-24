@@ -1,0 +1,57 @@
+---
+import Base from '../layouts/Base.astro';
+import Banner from '../components/Banner.astro';
+import AudienceCards from '../components/AudienceCards.astro';
+import photo from '../assets/images/palais-de-justice.jpg';
+---
+
+<Base
+  title="AP Détectives | Agence de détectives privés pour particuliers et professionnels"
+  description="Particuliers et professionnels peuvent faire appel à nous. Nous intervenons uniquement dans le respect du cadre légal, moral et légitime; le résultat de notre travail est reconnu par les tribunaux."
+>
+  <Banner image={photo} title="Discrétion, respect de la vie privée & du droit à l’image" />
+
+  <article class="container-site py-16 sm:py-20">
+    <div class="grid gap-x-14 gap-y-5 md:grid-cols-2">
+      <div class="prose-site !text-base !leading-8">
+        <p>
+          En France, le métier d’Agent de Recherches Privées, plus communément connu sous
+          l’appellation détective privé, est très réglementé pour garantir le respect de la vie
+          privée et du droit à l’image. Nous intervenons uniquement dans le respect du cadre légal,
+          moral et légitime ; le résultat de notre travail est reconnu par les tribunaux.
+        </p>
+        <p>
+          En effet, afin de défendre au mieux les intérêts de nos mandants, un rapport officiel est
+          délivré à la fin de chaque mission. Ce rapport est recevable en Justice comme preuve,
+          soumis à la libre appréciation du Juge ; il est précis, détaillé et circonstancié,
+          reprenant l’ensemble des informations recueillies durant toute notre enquête (faits à
+          l’instant T, constats, photos, dates).
+        </p>
+        <p>
+          <strong>La confiance accordée par nos mandants est primordiale pour nous.</strong> Notre
+          agence garantie le plus grand professionnalisme et la discrétion la plus complète pour
+          mener à bien toutes les affaires qui lui sont confiées.
+        </p>
+      </div>
+      <div class="prose-site !text-base !leading-8">
+        <p>
+          De plus, la loi et notre code de déontologie imposent à la profession{' '}
+          <strong>le secret professionnel le plus strict.</strong>
+        </p>
+        <p>
+          Nous sommes en mesure de nous déplacer sur tout le territoire, y compris à l’étranger,
+          pour pousser nos investigations aussi loin que nécessaire.
+        </p>
+        <p>
+          Particuliers et professionnels peuvent faire appel à nous, de plus, nous travaillons avec
+          les professions de droit en étroite collaboration{' '}
+          <strong>afin d’apporter le maximum d’éléments de preuves dans un litige.</strong>
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-14">
+      <AudienceCards />
+    </div>
+  </article>
+</Base>

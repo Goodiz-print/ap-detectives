@@ -1,0 +1,111 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/images/logo.png';
+import { nav, contactHref, site } from '../data/site';
+
+interface Props {
+  /** `overlay` : barre transparente à liens blancs, posée sur le hero sombre de l'accueil. */
+  variant?: 'default' | 'overlay';
+}
+
+const { variant = 'default' } = Astro.props;
+const overlay = variant === 'overlay';
+const path = Astro.url.pathname.replace(/\/?$/, '/');
+const isCurrent = (href: string) => path === href;
+---
+
+<header
+  class:list={[
+    'z-30 w-full font-nav',
+    overlay ? 'absolute inset-x-0 top-0 bg-linear-to-b from-black/75 to-transparent pb-6 text-white' : 'relative bg-white text-ink',
+  ]}
+>
+  <div class="container-site flex items-center justify-between gap-6 py-4">
+    {
+      overlay ? (
+        <span />
+      ) : (
+        <a href="/" class="shrink-0" aria-label={`${site.name} — accueil`}>
+          <Image src={logo} alt={site.name} width={116} height={100} densities={[1, 2]} loading="eager" />
+        </a>
+      )
+    }
+
+    <nav aria-label="Navigation principale" class="hidden items-center gap-7 lg:flex">
+      {
+        nav.map((item) => (
+          <a
+            href={item.href}
+            aria-current={isCurrent(item.href) ? 'page' : undefined}
+            class:list={[
+              'border-b-2 pb-0.5 text-[0.95rem] transition-colors',
+              isCurrent(item.href)
+                ? 'border-gold'
+                : 'border-transparent hover:border-gold',
+              overlay && isCurrent(item.href) && 'text-gold',
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a href={contactHref} class="btn-gold !py-2.5 !text-[0.95rem]">Nous contacter</a>
+    </nav>
+
+    <button
+      type="button"
+      id="menu-toggle"
+      class="-mr-2 flex size-11 items-center justify-center lg:hidden"
+      aria-expanded="false"
+      aria-controls="menu-mobile"
+    >
+      <span class="sr-only">Ouvrir le menu</span>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path d="M4 7h16M4 12h16M4 17h16"></path>
+      </svg>
+    </button>
+  </div>
+
+  <nav
+    id="menu-mobile"
+    aria-label="Navigation mobile"
+    hidden
+    class="absolute inset-x-0 top-full border-t border-black/10 bg-white text-ink shadow-lg lg:hidden"
+  >
+    <ul class="container-site flex flex-col py-3">
+      {
+        nav.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              aria-current={isCurrent(item.href) ? 'page' : undefined}
+              class:list={['block py-3 text-lg', isCurrent(item.href) && 'font-semibold underline decoration-gold decoration-2 underline-offset-4']}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+      <li class="py-3"><a href={contactHref} class="btn-gold w-full">Nous contacter</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script is:inline>
+  (() => {
+    const btn = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu-mobile');
+    if (!btn || !menu) return;
+    const set = (open) => {
+      menu.hidden = !open;
+      btn.setAttribute('aria-expanded', String(open));
+    };
+    btn.addEventListener('click', () => set(menu.hidden));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !menu.hidden) {
+        set(false);
+        btn.focus();
+      }
+    });
+  })();
+</script>

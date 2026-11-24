@@ -1,0 +1,65 @@
+---
+import Base from '../layouts/Base.astro';
+import ContactAside from '../components/ContactAside.astro';
+import ContactForm from '../components/ContactForm.astro';
+import photo from '../assets/images/pont-de-pierre.jpg';
+---
+
+<Base
+  title="AP Détectives | Nos tarifs"
+  description="Chaque cas est particulier, c'est pour cela que les tarifs varient en fonction de la complexité des affaires et des moyens."
+  cta={false}
+>
+  <div class="container-site grid gap-10 pt-6 pb-16 md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] md:gap-12">
+
+    <article>
+      <h1 class="font-display text-5xl text-ink">Tarifs</h1>
+      <div class="prose-site mt-8">
+        <p>
+          Chaque cas est particulier, c’est pour cela que les tarifs varient en fonction de la
+          complexité des affaires et des moyens (nombre d’agents nécessaires, localisation et durée
+          de la mission) qui doivent être mis en œuvre pour rapporter des preuves et éléments
+          concrets afin de défendre au mieux les intérêts de nos mandants.
+        </p>
+        <p>
+          Pour définir au mieux une proposition budgétaire de nos prestations pour votre affaire,{' '}
+          <a href="/contact/" class="underline decoration-gold decoration-2 underline-offset-4">contactez-nous</a>.
+        </p>
+        <p>
+          A titre informatif, le tarif pour certaines enquêtes administratives ou recherches de
+          personnes simples peut débuter à partir de 80 euros T.T.C. Toutes enquêtes de terrain
+          sont facturées entre 70 et 110 euros de l’heure (4 heures minimum indivisibles), hors
+          frais, pour un agent, en fonction des régions, de la complexité et de la réalisation des
+          recherches à mener. Une tarification forfaitaire, pouvant inclure certains frais
+          inhérents à la mission, est proposée en fonction de la durée de l’affaire.
+        </p>
+        <p>
+          <strong>IMPORTANT A SAVOIR :</strong> Le remboursement des frais d’enquête est possible,
+          que ce soit pour les procédures civiles et commerciales.<br />
+          Dans le cadre d’une procédure juridique, il est possible de demander le paiement des
+          frais d’enquête par la partie adverse sur le principe de l’équité. Différents articles
+          sont prévus en fonction des procédures engagées (article 700 du Code de procédure civile,
+          article L761-1 du Code de justice administrative, article 475-1 et 375 du Code de
+          procédure pénale). La somme accordée reste à la libre appréciation du juge.
+        </p>
+        <p>
+          <em>
+            L’article 700 du code de procédure civile :<br />
+            Le juge condamne la partie tenue aux dépens ou qui perd son procès à payer :<br />
+            1° À l’autre partie la somme qu’il détermine, au titre des frais exposés et non compris
+            dans les dépens ;<br />
+            2° Et, le cas échéant, à l’avocat du bénéficiaire de l’aide juridictionnelle partielle
+            ou totale une somme au titre des honoraires et frais, non compris dans les dépens, que
+            le bénéficiaire de l’aide aurait exposés s’il n’avait pas eu cette aide. Dans ce cas,
+            il est procédé comme il est dit aux alinéas 3 et 4 de l’article 37 de la loi n° 91-647
+            du 10 juillet 1991.
+          </em>
+        </p>
+      </div>
+
+      <h2 class="mt-14 mb-8 font-display text-3xl text-ink">Demander un devis</h2>
+      <ContactForm />
+    </article>
+    <ContactAside image={photo} alt="Le pont de pierre à Bordeaux au soleil couchant" />
+  </div>
+</Base>

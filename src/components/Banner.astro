@@ -1,0 +1,32 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  image: ImageMetadata;
+  /** Titre de la page (h1), affiché sur la photo. */
+  title: string;
+  /** Cadrage de la photo (classe Tailwind `object-*`). */
+  position?: string;
+}
+
+const { image, title, position = 'object-center' } = Astro.props;
+---
+
+<div class="relative isolate flex min-h-64 items-center bg-ink sm:min-h-80 lg:min-h-[26rem]">
+  <Image
+    src={image}
+    alt=""
+    widths={[640, 1032, image.width]}
+    sizes="100vw"
+    loading="eager"
+    fetchpriority="high"
+    class:list={['absolute inset-0 -z-20 h-full w-full object-cover', position]}
+  />
+  <div class="absolute inset-0 -z-10 bg-ink/60"></div>
+  <div class="container-site py-12 text-center">
+    <h1 class="mx-auto max-w-4xl font-display text-4xl leading-tight text-white sm:text-5xl lg:text-6xl">
+      {title}
+    </h1>
+    <span class="mx-auto mt-6 block h-1 w-16 bg-gold" aria-hidden="true"></span>
+  </div>
+</div>

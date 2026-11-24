@@ -1,0 +1,58 @@
+---
+import Base from '../layouts/Base.astro';
+import Banner from '../components/Banner.astro';
+import photo from '../assets/images/place-de-la-bourse.jpg';
+import { site } from '../data/site';
+---
+
+<Base
+  title="AP Détectives | L'Agence"
+  description="L'agence AP Détectives & Consulting est gérée par Pauline Gravey, Agent de Recherches Privées agréée par le Conseil National des Activités Privées de Sécurité (CNAPS), sous tutelle du Ministère de l'Intérieur."
+>
+  <Banner image={photo} title="Écoute, adaptation & observation" />
+
+  <article class="container-site max-w-[44rem] py-16 sm:py-20">
+    <div class="prose-site !text-base !leading-8">
+      <p class="text-lg leading-8">
+        L’agence AP Détectives &amp; Consulting est gérée par Pauline Gravey, Agent de Recherches
+        Privées agréée par le Conseil National des Activités Privées de Sécurité (CNAPS), sous
+        tutelle du Ministère de l’Intérieur, sous le numéro {site.legal.agrementDirigeant}.
+      </p>
+      <p>
+        <strong>Ses atouts :</strong> une grande capacité d’écoute, d’adaptation, d’observation et
+        une très bonne maîtrise des investigations sur le terrain.
+      </p>
+      <p>
+        Passionnée par les métiers juridiques, elle découvre l’existence du métier de détective
+        privé en France à l’âge de 16 ans et décide de suivre cette voie.
+      </p>
+      <p>
+        Son cursus lui a permis de vivre dans de nombreux coins de France. En effet, après deux
+        années de licence de Droit à l’Université de Caen-Normandie, elle intègre l’Université
+        Lille 2 où elle obtiendra avec mention le Diplôme Universitaire Technologique Carrières
+        Juridiques, option Ressources Humaines.
+      </p>
+      <p>
+        Sa formation se finalisera à Montpellier, au sein de l’Institut de Formation des Agents de
+        Recherches Privées (IFAR) avec l’obtention du Diplôme Titre Agent de Recherches Privées –
+        Directeur des opérations.
+      </p>
+      <p>
+        De plus, plusieurs années à exercer comme détective salariée à Paris lui ont permis de se
+        perfectionner dans le métier avant de s’installer en plein cœur de Bordeaux et de créer sa
+        propre agence.
+      </p>
+    </div>
+    <aside class="mt-12 border-l-4 border-gold bg-[#f7f6f2] p-6 leading-7 sm:p-8">
+      <p>
+        <strong>
+          Membre de l’Office National des Détectives (OND), de la Confédération Nationale des
+          Enquêteurs privés (CNEP) et du Réseau d’Enquêteurs Privés (REP), nous collaborons
+          étroitement avec nos confrères détectives français et internationaux ; ainsi qu’avec les
+          professionnels du droit comme les administrateurs judiciaires, cabinets d’avocats,
+          notaires, ou huissiers de justice.
+        </strong>
+      </p>
+    </aside>
+  </article>
+</Base>

@@ -1,0 +1,64 @@
+---
+interface Props {
+  /** Affiche un lien vers la page des domaines d'intervention sous chaque liste. */
+  link?: boolean;
+}
+
+const { link = false } = Astro.props;
+
+const cards = [
+  {
+    title: 'Particuliers',
+    items: [
+      'Affaires conjugales et familiales',
+      'Infidélités',
+      'Garde d’enfants',
+      'Litiges immobiliers',
+      'Enquête de moralité',
+      'Successions',
+      'Recherches de personnes',
+      'Enquêtes de solvabilité',
+    ],
+  },
+  {
+    title: 'Professionnels',
+    items: [
+      'Enquête de moralité',
+      'Enquête avant embauche',
+      'Arrêts de travail abusifs',
+      'Concurrence déloyale',
+      'Vols en entreprise',
+    ],
+  },
+];
+---
+
+<div class="grid gap-8 text-left md:grid-cols-2">
+  {
+    cards.map((card) => (
+      <section class="flex flex-col border border-black/10 border-t-4 border-t-gold bg-white p-8 shadow-sm sm:p-10">
+        <h2 class="font-display text-3xl text-ink sm:text-4xl">{card.title}</h2>
+        <ul class="mt-6 grid gap-x-6 gap-y-3 leading-6 sm:grid-cols-2">
+          {card.items.map((item) => (
+            <li class="flex gap-3">
+              <span class="mt-2.5 h-px w-4 shrink-0 bg-gold" aria-hidden="true" />
+              {item}
+            </li>
+          ))}
+        </ul>
+        {link && (
+          <p class="mt-auto pt-8">
+            <a
+              href="/particuliers-professionnels/"
+              class="font-nav font-semibold underline decoration-gold decoration-2 underline-offset-4 hover:decoration-ink"
+            >
+              Nos domaines d’intervention
+              <span class="sr-only"> pour les {card.title.toLowerCase()}</span>
+              <span aria-hidden="true"> →</span>
+            </a>
+          </p>
+        )}
+      </section>
+    ))
+  }
+</div>

@@ -1,0 +1,78 @@
+---
+import { Image, getImage } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import AudienceCards from '../components/AudienceCards.astro';
+import heroFull from '../assets/images/hero-bureau.jpg';
+import heroObjets from '../assets/images/hero-objets.jpg';
+import logoClair from '../assets/images/logo-clair.png';
+import { site, contactHref } from '../data/site';
+
+const og = await getImage({ src: heroFull, width: 1200, format: 'jpg' });
+---
+
+<Base
+  title="AP Détectives & Consulting | Agence de détectives privés à Bordeaux"
+  description={site.tagline}
+  image={og.src}
+  headerVariant="overlay"
+>
+  <section class="relative isolate overflow-hidden bg-[#2b2b2e] text-white">
+    <!-- Photo : en fond atténué sur mobile, sur la moitié droite à partir de lg. -->
+    <div class="absolute inset-0 -z-10 lg:left-[52%]">
+      <Image
+        src={heroObjets}
+        alt=""
+        widths={[420, 620]}
+        sizes="(min-width: 1024px) 48vw, 100vw"
+        loading="eager"
+        fetchpriority="high"
+        class="h-full w-full object-cover object-left opacity-15 lg:opacity-100"
+      />
+      <div class="absolute inset-y-0 left-0 hidden w-40 bg-linear-to-r from-[#2b2b2e] to-transparent lg:block"></div>
+    </div>
+
+    <div class="container-site flex min-h-[34rem] items-center pt-28 pb-20 lg:min-h-[min(46rem,100svh)]">
+      <div class="mx-auto max-w-xl text-center lg:mx-0 lg:w-[48%] lg:max-w-none">
+        <Image
+          src={logoClair}
+          alt={site.name}
+          width={215}
+          height={185}
+          densities={[1, 2]}
+          loading="eager"
+          class="mx-auto"
+        />
+        <h1 class="mt-10 font-display text-3xl leading-snug text-gold sm:text-4xl">
+          Agence de détectives privés à Bordeaux, dans toute la France et à l’étranger
+        </h1>
+        <p class="mt-5 font-nav text-lg leading-8 text-white/85">
+          Pour particuliers et professionnels, dans le respect du cadre légal.
+        </p>
+        <p class="mt-9 flex flex-wrap justify-center gap-4">
+          <a href={contactHref} class="btn-gold">Nous contacter</a>
+          <a href="/particuliers-professionnels/" class="btn-outline">Nos domaines d’intervention</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f7f6f2]">
+    <div class="container-site py-16 text-center sm:py-20">
+      <p class="mx-auto max-w-3xl text-lg leading-8">
+        {site.name} est une agence de détectives privés pour particuliers et professionnels. Nous
+        intervenons uniquement dans le respect du cadre légal, moral et légitime ; le résultat de
+        notre travail est reconnu par les tribunaux.
+      </p>
+
+      <div class="mt-12">
+        <AudienceCards link />
+      </div>
+
+      <p class="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-3 font-nav">
+        <a href="/l-agence/" class="underline decoration-gold decoration-2 underline-offset-4 hover:decoration-ink">Découvrir l’agence</a>
+        <a href="/tarifs/" class="underline decoration-gold decoration-2 underline-offset-4 hover:decoration-ink">Consulter nos tarifs</a>
+        <a href="/faqs/" class="underline decoration-gold decoration-2 underline-offset-4 hover:decoration-ink">Questions fréquentes</a>
+      </p>
+    </div>
+  </section>
+</Base>

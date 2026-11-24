@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import ContactAside from '../components/ContactAside.astro';
+import ContactForm from '../components/ContactForm.astro';
+import photo from '../assets/images/rue-bordeaux.jpg';
+---
+
+<Base
+  title="AP Détectives | Contact"
+  description="Pour toute information complémentaire sur nos prestations et services ou demande de devis, contactez-nous via le formulaire ci-dessous. Nous sommes disponibles 7j/7 24h/24."
+  cta={false}
+>
+  <div class="container-site grid gap-10 pt-6 pb-16 md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] md:gap-12">
+
+    <article>
+      <h1 class="font-display text-5xl text-ink">Nous contacter</h1>
+      <div class="prose-site mt-8 mb-12">
+        <p>
+          Pour toute information complémentaire sur nos prestations et services ou demande de
+          devis, contactez-nous via le formulaire ci-dessous. Nous sommes disponibles 7j/7 24h/24.
+        </p>
+        <p>À très vite !</p>
+      </div>
+      <ContactForm />
+    </article>
+    <ContactAside image={photo} alt="Une rue pavée du centre de Bordeaux au coucher du soleil" />
+  </div>
+</Base>

@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  /* Jaune de la marque : fonds, boutons, filets. */
+  --color-gold: #e2ba04;
+  /* Variante assombrie pour le texte sur fond blanc (contraste 3:1 en grand corps). */
+  --color-gold-text: #a88a00;
+  --color-ink: #252529;
+  --color-charcoal: #313131;
+  --color-muted: #63636b;
+
+  --font-sans: "Roboto", ui-sans-serif, system-ui, sans-serif;
+  --font-nav: "Raleway Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Italiana", "Times New Roman", serif;
+  --font-serif: "Lora Variable", Georgia, serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+  .heading-display {
+    @apply font-display text-4xl leading-tight text-gold-text sm:text-5xl;
+  }
+  .prose-site {
+    @apply text-[0.95rem] leading-7;
+  }
+  .prose-site > * + * {
+    @apply mt-5;
+  }
+  .prose-site ol {
+    @apply list-decimal space-y-3 pl-5;
+  }
+  .prose-site ul {
+    @apply list-disc space-y-3 pl-5;
+  }
+  .btn-gold {
+    @apply inline-flex items-center justify-center rounded-full bg-gold px-7 py-3 font-nav text-base font-medium text-ink transition hover:brightness-95;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center rounded-full border border-white/60 px-7 py-3 font-nav text-base font-medium text-white transition hover:border-gold hover:text-gold;
+  }
+  .btn-dark {
+    @apply inline-flex items-center justify-center rounded bg-charcoal px-8 py-4 font-display text-lg tracking-wide text-white uppercase transition hover:bg-ink;
+  }
+}
