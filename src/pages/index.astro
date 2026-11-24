@@ -26,7 +26,7 @@ const og = await getImage({ src: heroFull, width: 1200, format: 'jpg' });
         sizes="(min-width: 1024px) 48vw, 100vw"
         loading="eager"
         fetchpriority="high"
-        class="h-full w-full object-cover object-left opacity-15 lg:opacity-100"
+        class="anim-kenburns h-full w-full object-cover object-left opacity-15 lg:opacity-100"
       />
       <div class="absolute inset-y-0 left-0 hidden w-40 bg-linear-to-r from-[#2b2b2e] to-transparent lg:block"></div>
     </div>
@@ -40,15 +40,15 @@ const og = await getImage({ src: heroFull, width: 1200, format: 'jpg' });
           height={185}
           densities={[1, 2]}
           loading="eager"
-          class="mx-auto"
+          class="anim-rise mx-auto"
         />
-        <h1 class="mt-10 font-display text-3xl leading-snug text-gold sm:text-4xl">
+        <h1 style="--i:1" class="anim-rise mt-10 font-display text-3xl leading-snug text-gold sm:text-4xl">
           Agence de détectives privés à Bordeaux, dans toute la France et à l’étranger
         </h1>
-        <p class="mt-5 font-nav text-lg leading-8 text-white/85">
+        <p style="--i:2" class="anim-rise mt-5 font-nav text-lg leading-8 text-white/85">
           Pour particuliers et professionnels, dans le respect du cadre légal.
         </p>
-        <p class="mt-9 flex flex-wrap justify-center gap-4">
+        <p style="--i:3" class="anim-rise mt-9 flex flex-wrap justify-center gap-4">
           <a href={contactHref} class="btn-gold">Nous contacter</a>
           <a href="/particuliers-professionnels/" class="btn-outline">Nos domaines d’intervention</a>
         </p>
@@ -58,7 +58,7 @@ const og = await getImage({ src: heroFull, width: 1200, format: 'jpg' });
 
   <section class="bg-[#f7f6f2]">
     <div class="container-site py-16 text-center sm:py-20">
-      <p class="mx-auto max-w-3xl text-lg leading-8">
+      <p class="mx-auto max-w-3xl text-lg leading-8" data-reveal>
         {site.name} est une agence de détectives privés pour particuliers et professionnels. Nous
         intervenons uniquement dans le respect du cadre légal, moral et légitime ; le résultat de
         notre travail est reconnu par les tribunaux.
@@ -68,10 +68,10 @@ const og = await getImage({ src: heroFull, width: 1200, format: 'jpg' });
         <AudienceCards link />
       </div>
 
-      <p class="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-3 font-nav">
-        <a href="/l-agence/" class="underline decoration-gold decoration-2 underline-offset-4 hover:decoration-ink">Découvrir l’agence</a>
-        <a href="/tarifs/" class="underline decoration-gold decoration-2 underline-offset-4 hover:decoration-ink">Consulter nos tarifs</a>
-        <a href="/faqs/" class="underline decoration-gold decoration-2 underline-offset-4 hover:decoration-ink">Questions fréquentes</a>
+      <p class="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-3 font-nav" data-reveal>
+        <a href="/l-agence/" class="underline decoration-gold decoration-2 underline-offset-4 transition-all duration-300 hover:decoration-ink hover:underline-offset-8">Découvrir l’agence</a>
+        <a href="/tarifs/" class="underline decoration-gold decoration-2 underline-offset-4 transition-all duration-300 hover:decoration-ink hover:underline-offset-8">Consulter nos tarifs</a>
+        <a href="/faqs/" class="underline decoration-gold decoration-2 underline-offset-4 transition-all duration-300 hover:decoration-ink hover:underline-offset-8">Questions fréquentes</a>
       </p>
     </div>
   </section>

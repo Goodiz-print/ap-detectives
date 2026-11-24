@@ -35,13 +35,17 @@ const cards = [
 
 <div class="grid gap-8 text-left md:grid-cols-2">
   {
-    cards.map((card) => (
-      <section class="flex flex-col border border-black/10 border-t-4 border-t-gold bg-white p-8 shadow-sm sm:p-10">
+    cards.map((card, i) => (
+      <section
+        data-reveal
+        style={`--i:${i * 2}`}
+        class="group flex flex-col border border-black/10 border-t-4 border-t-gold bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-1.5 hover:shadow-xl sm:p-10"
+      >
         <h2 class="font-display text-3xl text-ink sm:text-4xl">{card.title}</h2>
         <ul class="mt-6 grid gap-x-6 gap-y-3 leading-6 sm:grid-cols-2">
           {card.items.map((item) => (
             <li class="flex gap-3">
-              <span class="mt-2.5 h-px w-4 shrink-0 bg-gold" aria-hidden="true" />
+              <span class="mt-2.5 h-px w-4 shrink-0 origin-left bg-gold transition-transform duration-300 group-hover:scale-x-150" aria-hidden="true" />
               {item}
             </li>
           ))}
@@ -50,11 +54,11 @@ const cards = [
           <p class="mt-auto pt-8">
             <a
               href="/particuliers-professionnels/"
-              class="font-nav font-semibold underline decoration-gold decoration-2 underline-offset-4 hover:decoration-ink"
+              class="group/link font-nav font-semibold underline decoration-gold decoration-2 underline-offset-4 transition-colors hover:decoration-ink"
             >
               Nos domaines d’intervention
               <span class="sr-only"> pour les {card.title.toLowerCase()}</span>
-              <span aria-hidden="true"> →</span>
+              {' '}<span aria-hidden="true" class="inline-block transition-transform duration-300 group-hover/link:translate-x-1.5">→</span>
             </a>
           </p>
         )}

@@ -53,12 +53,207 @@
     @apply list-disc space-y-3 pl-5;
   }
   .btn-gold {
-    @apply inline-flex items-center justify-center rounded-full bg-gold px-7 py-3 font-nav text-base font-medium text-ink transition hover:brightness-95;
+    @apply relative inline-flex items-center justify-center overflow-hidden rounded-full bg-gold px-7 py-3 font-nav text-base font-medium text-ink transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-12px_var(--color-gold)] active:translate-y-0;
+  }
+  /* Reflet qui traverse le bouton au survol. */
+  .btn-gold::after {
+    content: "";
+    @apply pointer-events-none absolute inset-y-0 -left-1/2 w-1/2 -skew-x-12 bg-white/35 opacity-0;
   }
   .btn-outline {
-    @apply inline-flex items-center justify-center rounded-full border border-white/60 px-7 py-3 font-nav text-base font-medium text-white transition hover:border-gold hover:text-gold;
+    @apply inline-flex items-center justify-center rounded-full border border-white/60 px-7 py-3 font-nav text-base font-medium text-white transition duration-300 hover:-translate-y-0.5 hover:border-gold hover:text-gold active:translate-y-0;
   }
   .btn-dark {
-    @apply inline-flex items-center justify-center rounded bg-charcoal px-8 py-4 font-display text-lg tracking-wide text-white uppercase transition hover:bg-ink;
+    @apply inline-flex items-center justify-center rounded bg-charcoal px-8 py-4 font-display text-lg tracking-wide text-white uppercase transition duration-300 hover:-translate-y-0.5 hover:bg-ink hover:shadow-[0_14px_28px_-14px_var(--color-ink)] active:translate-y-0;
+  }
+
+  /* Lien de navigation : filet jaune qui se déploie depuis la gauche. */
+  .nav-link {
+    @apply relative pb-1 text-[0.95rem] transition-colors;
+  }
+  .nav-link::after {
+    content: "";
+    @apply absolute inset-x-0 bottom-0 h-0.5 origin-left scale-x-0 bg-gold transition-transform duration-300 ease-out;
+  }
+  .nav-link:hover::after,
+  .nav-link[aria-current="page"]::after {
+    @apply scale-x-100;
+  }
+
+  /* Burger qui se transforme en croix. */
+  .burger path {
+    transform-box: fill-box;
+    transform-origin: center;
+    transition:
+      transform 0.3s ease,
+      opacity 0.2s ease;
+  }
+  [aria-expanded="true"] .burger-top {
+    transform: translateY(5px) rotate(45deg);
+  }
+  [aria-expanded="true"] .burger-mid {
+    opacity: 0;
+  }
+  [aria-expanded="true"] .burger-bot {
+    transform: translateY(-5px) rotate(-45deg);
+  }
+
+  /* Bouton « retour en haut » : n'apparaît qu'après un peu de défilement (si JS actif). */
+  .to-top {
+    transition:
+      opacity 0.3s ease,
+      translate 0.3s ease,
+      visibility 0.3s,
+      filter 0.2s ease;
+  }
+  html.js:not([data-scrolled]) .to-top {
+    @apply invisible translate-y-3 opacity-0;
+  }
+}
+
+/* ---------- Animations ---------- */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(1.75rem);
+  }
+}
+@keyframes slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(-2.5rem);
+  }
+}
+@keyframes slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(2.5rem);
+  }
+}
+@keyframes zoom-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+}
+@keyframes ken-burns {
+  from {
+    transform: scale(1.14);
+  }
+}
+@keyframes grow-x {
+  from {
+    transform: scaleX(0);
+  }
+}
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+}
+@keyframes sheen {
+  from {
+    left: -50%;
+    opacity: 1;
+  }
+  to {
+    left: 120%;
+    opacity: 1;
+  }
+}
+@keyframes vt-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes vt-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+}
+
+/* Tout le mouvement est désactivé si l'utilisateur a demandé à le réduire. */
+@media (prefers-reduced-motion: no-preference) {
+  /* Fondu entre les pages (navigateurs compatibles, sans JavaScript). */
+  @view-transition {
+    navigation: auto;
+  }
+  ::view-transition-old(root) {
+    animation: vt-out 0.18s ease both;
+  }
+  ::view-transition-new(root) {
+    animation: vt-in 0.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  /* Entrées jouées au chargement ; `--i` décale les éléments entre eux. */
+  .anim-rise {
+    animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+    animation-delay: calc(var(--i, 0) * 130ms + 80ms);
+  }
+  .anim-grow {
+    animation: grow-x 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+    animation-delay: calc(var(--i, 0) * 130ms + 80ms);
+  }
+  .anim-kenburns {
+    animation: ken-burns 2.8s cubic-bezier(0.2, 0.6, 0.2, 1) backwards;
+  }
+
+  /* Apparitions au défilement : masqué tant que le script n'a pas posé `.is-visible`. */
+  html.js :is([data-reveal], [data-reveal-children] > *):not(.is-visible) {
+    opacity: 0;
+  }
+  html.js :is([data-reveal], [data-reveal-children] > *).is-visible {
+    animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+    animation-delay: calc(var(--i, 0) * 90ms);
+  }
+  html.js [data-reveal="left"].is-visible {
+    animation-name: slide-left;
+  }
+  html.js [data-reveal="right"].is-visible {
+    animation-name: slide-right;
+  }
+  html.js [data-reveal="zoom"].is-visible {
+    animation-name: zoom-in;
+  }
+
+  .btn-gold:hover::after {
+    animation: sheen 0.7s ease;
+  }
+
+  /* Menu mobile. */
+  #menu-mobile:not([hidden]) {
+    animation: menu-in 0.25s ease backwards;
+  }
+  #menu-mobile:not([hidden]) li {
+    animation: rise 0.4s ease backwards;
+    animation-delay: calc(var(--i, 0) * 45ms + 60ms);
+  }
+
+  /* FAQ : ouverture progressive (hauteur animée là où le navigateur le permet). */
+  :root {
+    interpolate-size: allow-keywords;
+  }
+  details::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition:
+      block-size 0.35s ease,
+      content-visibility 0.35s allow-discrete;
+  }
+  details[open]::details-content {
+    block-size: auto;
+  }
+  details[open] > summary ~ * {
+    animation: rise 0.45s ease backwards;
+  }
+}
+
+@media print {
+  [data-reveal],
+  [data-reveal-children] > * {
+    opacity: 1 !important;
   }
 }

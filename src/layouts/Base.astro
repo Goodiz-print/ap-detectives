@@ -35,6 +35,9 @@ const { headerVariant = 'default', cta = true, ...seo } = Astro.props;
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="theme-color" content="#252529" />
     <Seo {...seo} />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
   </head>
   <body id="top">
     <a
@@ -49,5 +52,35 @@ const { headerVariant = 'default', cta = true, ...seo } = Astro.props;
     </main>
     {cta && <CtaBand />}
     <Footer />
+    <script is:inline>
+      // Apparitions au défilement + affichage du bouton « retour en haut ».
+      (() => {
+        const root = document.documentElement;
+        const els = document.querySelectorAll('[data-reveal], [data-reveal-children] > *');
+        const show = (el) => el.classList.add('is-visible');
+        if (!('IntersectionObserver' in window)) {
+          els.forEach(show);
+        } else {
+          const io = new IntersectionObserver(
+            (entries) => {
+              // Les éléments qui entrent ensemble dans l'écran sont décalés en cascade.
+              let n = 0;
+              for (const entry of entries) {
+                if (!entry.isIntersecting) continue;
+                const el = entry.target;
+                if (!el.style.getPropertyValue('--i')) el.style.setProperty('--i', Math.min(n++, 8));
+                show(el);
+                io.unobserve(el);
+              }
+            },
+            { rootMargin: '0px 0px -5% 0px' },
+          );
+          els.forEach((el) => io.observe(el));
+        }
+        const onScroll = () => root.toggleAttribute('data-scrolled', window.scrollY > 400);
+        onScroll();
+        addEventListener('scroll', onScroll, { passive: true });
+      })();
+    </script>
   </body>
 </html>

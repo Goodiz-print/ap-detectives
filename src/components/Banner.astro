@@ -12,7 +12,7 @@ interface Props {
 const { image, title, position = 'object-center' } = Astro.props;
 ---
 
-<div class="relative isolate flex min-h-64 items-center bg-ink sm:min-h-80 lg:min-h-[26rem]">
+<div class="relative isolate flex min-h-64 items-center overflow-hidden bg-ink sm:min-h-80 lg:min-h-[26rem]">
   <Image
     src={image}
     alt=""
@@ -20,13 +20,13 @@ const { image, title, position = 'object-center' } = Astro.props;
     sizes="100vw"
     loading="eager"
     fetchpriority="high"
-    class:list={['absolute inset-0 -z-20 h-full w-full object-cover', position]}
+    class:list={['anim-kenburns absolute inset-0 -z-20 h-full w-full object-cover', position]}
   />
   <div class="absolute inset-0 -z-10 bg-ink/60"></div>
   <div class="container-site py-12 text-center">
-    <h1 class="mx-auto max-w-4xl font-display text-4xl leading-tight text-white sm:text-5xl lg:text-6xl">
+    <h1 class="anim-rise mx-auto max-w-4xl font-display text-4xl leading-tight text-white sm:text-5xl lg:text-6xl">
       {title}
     </h1>
-    <span class="mx-auto mt-6 block h-1 w-16 bg-gold" aria-hidden="true"></span>
+    <span class="anim-grow mx-auto mt-6 block h-1 w-16 bg-gold" style="--i:3" aria-hidden="true"></span>
   </div>
 </div>

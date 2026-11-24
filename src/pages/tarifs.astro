@@ -13,8 +13,8 @@ import photo from '../assets/images/pont-de-pierre.jpg';
   <div class="container-site grid gap-10 pt-6 pb-16 md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] md:gap-12">
 
     <article>
-      <h1 class="font-display text-5xl text-ink">Tarifs</h1>
-      <div class="prose-site mt-8">
+      <h1 class="anim-rise font-display text-5xl text-ink">Tarifs</h1>
+      <div class="prose-site mt-8" data-reveal-children>
         <p>
           Chaque cas est particulier, c’est pour cela que les tarifs varient en fonction de la
           complexité des affaires et des moyens (nombre d’agents nécessaires, localisation et durée
@@ -57,7 +57,7 @@ import photo from '../assets/images/pont-de-pierre.jpg';
         </p>
       </div>
 
-      <h2 class="mt-14 mb-8 font-display text-3xl text-ink">Demander un devis</h2>
+      <h2 data-reveal class="mt-14 mb-8 font-display text-3xl text-ink">Demander un devis</h2>
       <ContactForm />
     </article>
     <ContactAside image={photo} alt="Le pont de pierre à Bordeaux au soleil couchant" />

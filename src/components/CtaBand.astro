@@ -6,13 +6,13 @@ import { contactHref } from '../data/site';
   <div
     class="container-site flex flex-col items-center gap-8 py-14 text-center md:flex-row md:justify-between md:text-left"
   >
-    <div class="max-w-3xl">
+    <div class="max-w-3xl" data-reveal="left">
       <h2 class="font-serif text-3xl font-bold sm:text-4xl">En savoir plus</h2>
       <p class="mt-4 font-nav text-lg leading-8">
         N'hésitez pas à nous contacter si vous souhaitez des informations complémentaires ou pour
         toute demande de devis et prise de rendez-vous.
       </p>
     </div>
-    <a href={contactHref} class="btn-dark shrink-0">Nous contacter</a>
+    <a href={contactHref} class="btn-dark shrink-0" data-reveal="right">Nous contacter</a>
   </div>
 </section>

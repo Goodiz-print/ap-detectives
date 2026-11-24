@@ -5,7 +5,7 @@
  * Forms → Form notifications → Email notification.
  */
 const field =
-  'mt-2 block w-full border border-black/20 bg-white px-3 py-2.5 text-base text-ink focus:border-ink';
+  'mt-2 block w-full border border-black/20 bg-white px-3 py-2.5 text-base text-ink transition duration-200 hover:border-black/40 focus:border-ink focus:shadow-[0_0_0_4px_rgb(226_186_4/0.25)]';
 ---
 
 <form
@@ -15,6 +15,7 @@ const field =
   data-netlify="true"
   netlify-honeypot="site-web"
   class="max-w-xl space-y-6"
+  data-reveal-children
 >
   <input type="hidden" name="form-name" value="contact" />
   <p class="hidden">
@@ -51,7 +52,7 @@ const field =
     par le secret professionnel. Voir les <a href="/mentions-legales/" class="underline">mentions légales</a>.
   </p>
 
-  <button type="submit" class="bg-gold px-6 py-3 font-medium text-ink transition hover:brightness-95">
+  <button type="submit" class="bg-gold px-6 py-3 font-medium text-ink transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-12px_var(--color-gold)] active:translate-y-0">
     Envoyer
   </button>
 </form>

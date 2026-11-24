@@ -29,13 +29,13 @@ const faqLd = {
 >
   <Banner image={photo} title="Questions fréquentes" />
 
-  <div class="container-site max-w-4xl py-16">
+  <div class="container-site max-w-4xl py-16" data-reveal-children>
     {
       faq.map((item) => (
         <details class="group border-b border-black/15">
-          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-lg font-bold [&::-webkit-details-marker]:hidden">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-lg font-bold transition-colors duration-200 hover:text-gold-text [&::-webkit-details-marker]:hidden">
             <h2>{item.question}</h2>
-            <svg class="shrink-0 transition-transform group-open:rotate-180" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg class="shrink-0 transition-transform duration-300 group-open:rotate-180" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="m6 9 6 6 6-6" />
             </svg>
           </summary>

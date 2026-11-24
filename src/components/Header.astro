@@ -38,11 +38,8 @@ const isCurrent = (href: string) => path === href;
             href={item.href}
             aria-current={isCurrent(item.href) ? 'page' : undefined}
             class:list={[
-              'border-b-2 pb-0.5 text-[0.95rem] transition-colors',
-              isCurrent(item.href)
-                ? 'border-gold'
-                : 'border-transparent hover:border-gold',
-              overlay && isCurrent(item.href) && 'text-gold',
+              'nav-link',
+              overlay && (isCurrent(item.href) ? 'text-gold' : 'hover:text-gold'),
             ]}
           >
             {item.label}
@@ -60,8 +57,10 @@ const isCurrent = (href: string) => path === href;
       aria-controls="menu-mobile"
     >
       <span class="sr-only">Ouvrir le menu</span>
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-        <path d="M4 7h16M4 12h16M4 17h16"></path>
+      <svg class="burger" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path class="burger-top" d="M4 7h16"></path>
+        <path class="burger-mid" d="M4 12h16"></path>
+        <path class="burger-bot" d="M4 17h16"></path>
       </svg>
     </button>
   </div>
@@ -74,8 +73,8 @@ const isCurrent = (href: string) => path === href;
   >
     <ul class="container-site flex flex-col py-3">
       {
-        nav.map((item) => (
-          <li>
+        nav.map((item, i) => (
+          <li style={`--i:${i}`}>
             <a
               href={item.href}
               aria-current={isCurrent(item.href) ? 'page' : undefined}
@@ -86,7 +85,7 @@ const isCurrent = (href: string) => path === href;
           </li>
         ))
       }
-      <li class="py-3"><a href={contactHref} class="btn-gold w-full">Nous contacter</a></li>
+      <li class="py-3" style={`--i:${nav.length}`}><a href={contactHref} class="btn-gold w-full">Nous contacter</a></li>
     </ul>
   </nav>
 </header>
